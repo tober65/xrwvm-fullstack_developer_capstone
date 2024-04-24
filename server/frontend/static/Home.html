@@ -12,9 +12,9 @@ const logout = async (e) => {
   const res = await fetch(logout_url, {
     method: "GET",
   });
-  alert("After fetch")
+  
   const json = await res.json();
-  alert(json)
+  
   if (json) {
     let username = sessionStorage.getItem('username');
     sessionStorage.removeItem('username');
@@ -33,7 +33,7 @@ let checkSession = ()=>{
   if (curr_user && curr_user !== "") {
     document.getElementById("loginlogout").innerHTML = 
     '<span class="homepage_links">' + curr_user +'</span>' +
-    '<a class="homepage_links" onclick="logout()" href="/">Logout</a>'
+    '<button class="homepage_links" onclick="logout()" >Logout</a>'
   } else {
     document.getElementById("loginlogout").innerHTML = 
     '<a class="homepage_links" href="/login">Login</a>'+
