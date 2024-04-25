@@ -15,19 +15,16 @@ class CarMake(models.Model):
         return self.name
 
 class CarModel(models.Model):
-    car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)  # Many-to-One relationship
-    name = models.CharField(max_length=100)
-    CAR_TYPES = [
+    CAR_TYPE_CHOICES = [
         ('SEDAN', 'Sedan'),
         ('SUV', 'SUV'),
         ('WAGON', 'Wagon')
     ]
-    type = models.CharField(max_length=10, choices=CAR_TYPES, default='SUV')
-    year = models.IntegerField(default=2023,
-        validators=[
-            MaxValueValidator(2023),
-            MinValueValidator(2015)
-        ])
+
+    car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)  # Many-to-One relationship
+    name = models.CharField(max_length=100)
+    type = models.CharField(max_length=10, choices=CAR_TYPE_CHOICES, default='SUV')
+    year = models.IntegerField(default=2023)
 
     def __str__(self):
         return self.name  # Return the name as the string representation
