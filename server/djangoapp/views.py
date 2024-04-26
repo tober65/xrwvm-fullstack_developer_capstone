@@ -72,6 +72,7 @@ def registration(request):
     login(request, user)
 
     return JsonResponse({"userName": username, "status": "Success"})
+    
 # Create a `get_cars` view to view cars
 def get_cars(request):
     count = CarMake.objects.filter().count()
@@ -100,7 +101,8 @@ def get_dealer_reviews(request,dealer_id):
     
     for review in reviews:
         sentiment = analyze_review_sentiments(review["review"])
-        review["review_detail"] = sentiment["sentiment"]
+        print(sentiment)
+        review["sentiment"] = sentiment["sentiment"]
     
     return JsonResponse({"status":200, "reviews":reviews})
 
